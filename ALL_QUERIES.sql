@@ -125,13 +125,43 @@ VALUES
 -- TASKS
 
 -- 1. get students count college wise
-select c.college_name, count(s.college_id) student_count from college c left join student s on c.college_id =s.college_id
+    select c.college_name, count(s.college_id) student_count from college c left join student s on c.college_id =s.college_id
 group by c.college_name ;
 
 -- 2. get students count in a college, course wise
-select c.college_name, c2.course_name ,count(s.course_id) from college c right join college_course cc on c.college_id = cc.college_id
-join course c2 on cc.course_id = c2.course_id ;
+    select c.college_name, c2.course_name, count(s.student_id) as student_count
+from college c
+inner join college_course cc on c.college_id = cc.college_id 
+inner join course c2 on c2.course_id = cc.course_id
+left join student s on cc.college_id = s.college_id and c2.course_id = s.course_id
+group by c.college_name, c2.course_name
+order by c.college_name, student_count desc;
+
+-- SELECT c.college_name, co.course_name, COUNT(s.student_id) AS student_count
+-- FROM college c
+-- INNER JOIN student s ON c.college_id = s.college_id
+-- INNER JOIN course co ON s.course_id = co.course_id
+-- GROUP BY c.college_name, co.course_name
+-- order by c.college_name, student_count desc;
+
+
 -- 3. get the university rank holder across all courses(1 student)
+
+    SELECT m.student_id, s.student_name, AVG(m.marks) AS cgp,c2.course_name, c.college_name 
+FROM marks m
+join student s on s.student_id = m.student_id 
+join course c2 on c2.course_id = s.course_id 
+join college c on c.college_id = s.college_id 
+GROUP BY m.student_id,s.student_name,c2.course_name,c.college_name
+HAVING AVG(marks) = (
+    SELECT MAX(avg_marks)
+    FROM (
+        SELECT AVG(marks) AS avg_marks
+        FROM marks
+        GROUP BY student_id
+    ) AS max_avg
+);
+
 -- 4. get the list of rank holders each course
 -- 5. get the college topper across all courses
 -- 6. get the college toppers each course
