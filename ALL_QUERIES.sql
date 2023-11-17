@@ -121,3 +121,20 @@ VALUES
     (5, 1, 10, 7),
     (5, 1, 9, 8),
     (5, 1, 20, 9);
+
+-- TASKS
+
+-- 1. get students count college wise
+select c.college_name, count(s.college_id) student_count from college c left join student s on c.college_id =s.college_id
+group by c.college_name ;
+
+-- 2. get students count in a college, course wise
+select c.college_name, c2.course_name ,count(s.course_id) from college c right join college_course cc on c.college_id = cc.college_id
+join course c2 on cc.course_id = c2.course_id ;
+-- 3. get the university rank holder across all courses(1 student)
+-- 4. get the list of rank holders each course
+-- 5. get the college topper across all courses
+-- 6. get the college toppers each course
+-- 7. get the failed students count each subject 
+-- 8. get over all students list with semester marks
+-- 9. get the student list who wasnt appear to the exams
