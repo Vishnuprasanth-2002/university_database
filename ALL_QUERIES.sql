@@ -34,7 +34,7 @@ semester_id integer references semester(semester_id),marks integer,subject_id in
 
 -- INSERT DATAS
 
-insert into university (university_name) values ('pondicherry university')
+insert into university (university_name) values ('pondicherry university');
 
 insert into college (college_name,university_id)
 values ('PEC',1),('SMVEC',1),('MIT',1),('TAC',1),('IDHAYA',1);
@@ -49,13 +49,13 @@ insert into course (course_name)
 values ('chemical engineering'),('BME');
 
 insert into college_course (college_id,course_id)
-values (1,1),(1,2),(1,3),(1,4),(1,14)
+values (1,1),(1,2),(1,3),(1,4),(1,14);
 
 insert into college_course (college_id,course_id)
-values (2,1),(2,2),(2,3),(2,4),(2,5)
+values (2,1),(2,2),(2,3),(2,4),(2,5);
 
 insert into college_course (college_id,course_id)
-values (3,2),(3,3),(3,4),(3,14),(3,15)
+values (3,2),(3,3),(3,4),(3,14),(3,15);
 
 insert into college_course (college_id,course_id)
 values (4,6),(4,7),(4,8),(4,9),(4,10)
