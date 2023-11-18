@@ -165,14 +165,16 @@ HAVING AVG(marks) = (
 -- 4. get the list of rank holders each course
     SELECT 
     student_id,
+    student_name,
     course_name,
     cgp AS average_marks
 FROM (
     SELECT 
         s.student_id,
+        s.student_name,
         c.course_name,
         AVG(m.marks) AS cgp,
-        ROW_NUMBER() OVER(PARTITION BY c.course_id ORDER BY AVG(m.marks) DESC) AS rank
+        rank() OVER(PARTITION BY c.course_id ORDER BY AVG(m.marks) DESC) AS rank
     FROM 
         marks m
     JOIN 
@@ -181,10 +183,12 @@ FROM (
         course c ON c.course_id = s.course_id
     GROUP BY 
         s.student_id, 
+        s.student_name,
         c.course_name,
         c.course_id 
 ) ranked_students
 WHERE rank = 1;
+
 
 -- 5. get the college topper across all courses
 -- 6. get the college toppers each course
