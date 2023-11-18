@@ -219,8 +219,19 @@ where ranking = 1;
 
 
 -- 6. get the college toppers each course
-
+        select student_id,student_name,college_name ,course_name,cgp as avg_marks
+from(
+	select m.student_id ,s.student_name, c.college_name,c2.course_name, AVG(m.marks) AS cgp,
+rank() over(partition by c2.course_id,c.college_id  order by AVG(m.marks) DESC) as ranking
+from marks m 
+join student s on s.student_id = m.student_id 
+join college c on c.college_id = s.college_id 
+join course c2 on c2.course_id = s.course_id 
+group by m.student_id ,s.student_name, c.college_name,c2.course_id,c.college_id  ,c2.course_name) course_rank
+where ranking =1;
+        
 
 -- 7. get the failed students count each subject 
+
 -- 8. get over all students list with semester marks
 -- 9. get the student list who wasnt appear to the exams
