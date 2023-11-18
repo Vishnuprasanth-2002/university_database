@@ -122,6 +122,22 @@ VALUES
     (5, 1, 9, 8),
     (5, 1, 20, 9);
 
+INSERT INTO marks(student_id, semester_id, marks, subject_id)
+VALUES
+     (4, 1, 85, 10),
+    (4, 1, 92, 11),
+    (4, 1, 78, 12);
+INSERT INTO marks(student_id, semester_id, marks, subject_id)
+VALUES
+    (7, 1, 90, 2),
+    (7, 1, 90, 3),
+    (7, 1, 90, 6),
+    (6, 1, 90, 10),
+    (6, 1, 90, 11),
+    (6, 1, 90, 12);
+   
+   
+
 -- TASKS
 
 -- 1. get students count college wise
@@ -191,7 +207,20 @@ WHERE rank = 1;
 
 
 -- 5. get the college topper across all courses
+    select student_id ,student_name, college_name, cgp AS average_marks
+from(
+	select m.student_id ,s.student_name, c.college_name, AVG(m.marks) AS cgp,
+rank() over(partition by c.college_id order by AVG(m.marks) DESC) as ranking
+from marks m 
+join student s on s.student_id = m.student_id 
+join college c on c.college_id = s.college_id 
+group by m.student_id ,s.student_name, c.college_name,c.college_id) student_ranks
+where ranking = 1;
+
+
 -- 6. get the college toppers each course
+
+
 -- 7. get the failed students count each subject 
 -- 8. get over all students list with semester marks
 -- 9. get the student list who wasnt appear to the exams
