@@ -104,6 +104,9 @@ VALUES
     ('Olivia', '2002-04-25', 0890123, 2021, 8, 5),
     ('Mia', '2000-12-08', 0456789, 2023, 4, 2);
 
+insert into student(student_name,DOB,phone,joining_year,course_id,college_id)
+values ('sineka', '2001-01-10', 0567867, 2021, 7, 4);
+
 INSERT INTO marks(student_id, semester_id, marks, subject_id)
 VALUES
     (1, 1, 85, 10),
@@ -135,7 +138,11 @@ VALUES
     (6, 1, 90, 10),
     (6, 1, 90, 11),
     (6, 1, 90, 12);
-   
+INSERT INTO marks(student_id, semester_id, marks, subject_id)
+VALUES
+    (11, 1, 11, 7),
+    (11, 1, 19, 8),
+    (11, 1, -1, 9);
    
 
 -- TASKS
@@ -232,6 +239,14 @@ where ranking =1;
         
 
 -- 7. get the failed students count each subject 
+    SELECT s2.subject_name, COUNT(m.student_id) AS num_failed_students
+FROM marks m
+JOIN subject s2 ON m.subject_id = s2.subject_id
+WHERE m.marks < 30
+GROUP BY s2.subject_name;
+
 
 -- 8. get over all students list with semester marks
+
+
 -- 9. get the student list who wasnt appear to the exams
