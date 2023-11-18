@@ -143,6 +143,11 @@ VALUES
     (11, 1, 11, 7),
     (11, 1, 19, 8),
     (11, 1, -1, 9);
+INSERT INTO marks(student_id, semester_id, marks, subject_id)
+VALUES
+    (9, 1, -1, 3),
+    (9, 1, -1, 6),
+    (9, 1, -1, 7);
    
 
 -- TASKS
