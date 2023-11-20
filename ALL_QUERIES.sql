@@ -285,10 +285,10 @@ Task 3
     changed_by VARCHAR(50),
     status varchar
 );
---drop table marks_history 
+drop table marks_history 
 
---DROP TRIGGER IF EXISTS audit_marks ON marks;
---DROP TRIGGER IF EXISTS marks_audit_trigger ON marks;
+DROP TRIGGER IF EXISTS audit_marks ON marks;
+DROP TRIGGER IF EXISTS marks_audit_trigger ON marks;
 
 CREATE OR REPLACE FUNCTION audit_marks()
 RETURNS TRIGGER AS $$
