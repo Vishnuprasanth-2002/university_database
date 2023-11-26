@@ -165,12 +165,6 @@ left join student s on cc.college_id = s.college_id and c2.course_id = s.course_
 group by c.college_name, c2.course_name
 order by c.college_name, student_count desc;
 
--- SELECT c.college_name, co.course_name, COUNT(s.student_id) AS student_count
--- FROM college c
--- INNER JOIN student s ON c.college_id = s.college_id
--- INNER JOIN course co ON s.course_id = co.course_id
--- GROUP BY c.college_name, co.course_name
--- order by c.college_name, student_count desc;
 
 
 -- 3. get the university rank holder across all courses(1 student)
