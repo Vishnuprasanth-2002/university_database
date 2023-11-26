@@ -150,7 +150,7 @@ VALUES
     (9, 1, -1, 7);
    
 
--- TASKS
+-- TASKS 2
 
 -- 1. get students count college wise
     select c.college_name, count(s.college_id) student_count from college c left join student s on c.college_id =s.college_id
