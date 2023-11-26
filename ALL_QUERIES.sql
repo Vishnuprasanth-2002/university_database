@@ -330,6 +330,7 @@ GROUP BY c.college_name;
 
 select * from temp_student_count
 -- - delete a college and its respective things
+    add constaints on delete cascade
     delete from college where college_id = 1;
 -- - alter all the tables add audit columns (createdAt,createBy,updatedAt,updatedBy)
     ALTER TABLE marks 
